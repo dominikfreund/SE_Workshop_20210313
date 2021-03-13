@@ -17,23 +17,7 @@ public class StatementPrinter {
             var play = plays.get(perf.playID);
             var thisAmount = 0;
 
-            switch (play.type) {
-                case "tragedy":
-                    thisAmount = 40000;
-                    if (perf.audience > 30) {
-                        thisAmount += 1000 * (perf.audience - 30);
-                    }
-                    break;
-                case "comedy":
-                    thisAmount = 30000;
-                    if (perf.audience > 20) {
-                        thisAmount += 10000 + 500 * (perf.audience - 20);
-                    }
-                    thisAmount += 300 * perf.audience;
-                    break;
-                default:
-                    throw new Error("unknown type: ${play.type}");
-            }
+            thisAmount = calculateAmount(play, perf.audience);
 
             // add volume credits
             volumeCredits += Math.max(perf.audience - 30, 0);
@@ -48,5 +32,29 @@ public class StatementPrinter {
         result += String.format("You earned %s credits\n", volumeCredits);
         return result;
     }
+
+    private int calculateAmount(Play play, int perfAudience) {
+        int thisAmount = 0;
+        switch (play.type) {
+            case "tragedy":
+                thisAmount = 40000;
+                if (perfAudience > 30) {
+                    thisAmount += 1000 * (perfAudience - 30);
+                }
+                break;
+            case "comedy":
+                thisAmount = 30000;
+                if (perfAudience > 20) {
+                    thisAmount += 10000 + 500 * (perfAudience - 20);
+                }
+                thisAmount += 300 * perfAudience;
+                break;
+            default:
+                throw new Error("unknown type: ${play.type}");
+        }
+
+        return thisAmount;
+    }
+
 
 }
