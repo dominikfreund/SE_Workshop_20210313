@@ -24,6 +24,7 @@ public class StatementPrinterTest {
                 "othello", new Play("Othello", "tragedy"));
     }
 
+
     @Test
     public void printsStatements() {
         StatementPrinter statementPrinter = new StatementPrinter();
