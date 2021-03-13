@@ -19,7 +19,7 @@ public class StatementPrinter {
 
             thisAmount = calculateAmount(play, perf.audience);
 
-            // add volume credits
+            // add volume credit
             volumeCredits += Math.max(perf.audience - 30, 0);
             // add extra credit for every ten comedy attendees
             if ("comedy" == play.type) volumeCredits += Math.floor(perf.audience / 5);
