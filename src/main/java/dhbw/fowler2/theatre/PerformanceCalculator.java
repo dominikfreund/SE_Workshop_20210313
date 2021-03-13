@@ -2,8 +2,10 @@ package dhbw.fowler2.theatre;
 
 public class PerformanceCalculator {
     private int totalAmount;
+    private int volumeCredits;
     public PerformanceCalculator(){
         totalAmount = 0;
+        volumeCredits =0;
     }
 
     public int addAmount(Play play, int perfAudience){
@@ -29,7 +31,15 @@ public class PerformanceCalculator {
         return thisAmount;
     }
 
+    public void addVolumeCredits(int perfAudience, String playType){
+        volumeCredits += Math.max(perfAudience - 30, 0);
+        if ("comedy" == playType) volumeCredits += Math.floor(perfAudience / 5);
+    }
+
     public int getTotalAmount() {
         return totalAmount;
+    }
+    public int getVolumeCredits(){
+        return volumeCredits;
     }
 }
